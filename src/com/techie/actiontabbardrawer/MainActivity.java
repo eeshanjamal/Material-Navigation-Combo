@@ -115,6 +115,20 @@ public class MainActivity extends AppCompatActivity {
 				return i;
 			}
 
+		},
+		MiniNavDrawer{
+			@Override
+			String getTitle() {
+				return "TranslucentStatusBar+Toolbar+FullHeightDrawer";
+			}
+
+			@Override
+			Intent getIntent(Context context) {
+				Intent i = new Intent(context, MiniNavDrawerActivity.class);
+				i.putExtra("fragment", PlaceHolderFragment.class.getName());
+				i.putExtra("title", getTitle());
+				return i;
+			}
 		};
 		
 		abstract String getTitle();

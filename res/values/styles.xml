@@ -5,23 +5,44 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+        
     </style>
 
-    <!-- Application theme. -->
+    <!-- ************ Application theme. *************** -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimary">@color/primary</item>
+	    <item name="colorPrimaryDark">@color/primary_dark</item>
+	    <item name="colorAccent">@color/accent</item>
     </style>
-   
-    <!-- Toolbar Activity Base theme. -->
-    <style name="ToolbarActivityBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
-    <style name="ToolbarActivityTheme" parent="ToolbarActivityBaseTheme"/>
     
-    <!-- Base ToolBar theme. -->
+    <!-- ************ Toolbar Activity theme. ************** -->
+    
+    <style name="ToolbarActivityBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+	
+    <style name="ToolbarActivityTheme" parent="ToolbarActivityBaseTheme">
+        <item name="colorPrimary">@color/primary</item>
+	    <item name="colorPrimaryDark">@color/primary_dark</item>
+	    <item name="colorAccent">@color/accent</item>
+    </style>    
+    
+
+    <!-- *********** MiniNavDrawer Activity theme. ************* -->
+    
+    <style name="MiniNavDrawerActBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+	    <item name="colorPrimaryDark">@color/primary_dark</item>
+	    <item name="colorAccent">@color/accent</item>
+	    <item name="colorControlHighlight">@color/primary</item>
+	    <item name="windowActionBar">false</item>
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="windowActionModeOverlay">true</item>
+	</style>
+    
+    <style name="MiniNavDrawerActTheme" parent="MiniNavDrawerActBaseTheme"/>
+    
+    
+    <!-- ************ Base ToolBar theme. ************ -->
+    
      <style name="ToolBarBaseTheme" parent="Theme.AppCompat.NoActionBar">
     </style>
 

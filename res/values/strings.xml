@@ -9,5 +9,6 @@
     <string name="drawer_options">Drawer Options</string>
     <string name="actionbar_activity">ActionbarActivity</string>
     <string name="toolbar_activity">ToolbarActivity</string>
+    <string name="mini_nav_drawer_activity">MiniNavDrawerActivity</string>
 
 </resources>

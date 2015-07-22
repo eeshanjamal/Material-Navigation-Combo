@@ -31,6 +31,12 @@
             android:name="ToolbarActivity"
             android:label="@string/toolbar_activity"
             android:theme="@style/ToolbarActivityTheme"/>
+        
+        <activity 
+            android:name="MiniNavDrawerActivity"
+            android:label="@string/mini_nav_drawer_activity"
+            android:theme="@style/MiniNavDrawerActTheme"/>
+        
     </application>
 
 </manifest>
