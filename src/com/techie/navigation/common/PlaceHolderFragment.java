@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.common;
+
+import com.techie.navigation.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -49,7 +51,12 @@ public class PlaceHolderFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.placeholder_fragment, container,false);
 		
-		String title = getArguments().getString("title");
+		String title = null;
+		
+		if(getArguments()!=null){
+			title = getArguments().getString("title");
+		}
+		
 		if(title == null){
 			title = "No Title Found!!";
 		}

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.sample2;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +24,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost.TabSpec;
 import android.widget.TabWidget;
+
+import com.techie.navigation.R;
+import com.techie.navigation.common.PlaceHolderFragment;
 
 public class TabHostFragment extends Fragment{
 

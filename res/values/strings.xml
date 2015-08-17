@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AppBarTabBarDrawer-Combo</string>
+    <string name="app_name">Material Navigation Combo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="artist">Artist</string>
@@ -9,5 +9,6 @@
     <string name="drawer_options">Drawer Options</string>
     <string name="actionbar_activity">ActionbarActivity</string>
     <string name="toolbar_activity">ToolbarActivity</string>
+    <string name="full_height_nav_drawer_activity">MiniNavDrawerActivity</string>
 
 </resources>

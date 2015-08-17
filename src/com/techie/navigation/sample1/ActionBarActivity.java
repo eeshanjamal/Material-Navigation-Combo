@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.sample1;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -27,6 +27,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+
+import com.techie.navigation.R;
+import com.techie.navigation.common.PlaceHolderFragment;
 
 
 public class ActionBarActivity extends AppCompatActivity {
