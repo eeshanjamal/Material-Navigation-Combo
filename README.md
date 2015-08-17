@@ -4,7 +4,7 @@ This project demostrates the different navigation combination of material design
 ### Sample1
 This sample screen shows the integration of ActionBar, TabBar & Naivgation Drawer components together.
 
-[Sample1 Screenshot](https://www.dropbox.com/s/ikp5jw5e28gvn8j/Screenshot_2015-08-17-14-23-36.png?dl=0)
+![Sample1 Screenshot](https://www.dropbox.com/s/ikp5jw5e28gvn8j/Screenshot_2015-08-17-14-23-36.png?dl=0)
 
 #Sample2.1
 This sample screen shows the integration of Toolbar with TabHost including Navigation Drawer.
