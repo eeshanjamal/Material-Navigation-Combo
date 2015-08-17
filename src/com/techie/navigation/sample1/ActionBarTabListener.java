@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.sample1;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -22,6 +22,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
+
+import com.techie.navigation.R;
 
 @SuppressWarnings("deprecation")
 public class ActionBarTabListener<T extends Fragment> implements ActionBar.TabListener{

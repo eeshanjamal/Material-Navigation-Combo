@@ -23,7 +23,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.techie.actiontabbardrawer.MainActivity$PlaceholderFragment" >
+    tools:context="com.techie.navigation.MainActivity$PlaceholderFragment" >
 
     <TextView
         android:id="@+id/title"

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.sample2;
 
 import java.util.ArrayList;
 
@@ -27,6 +27,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.techie.navigation.R;
+import com.techie.navigation.common.PlaceHolderFragment;
 
 public class TabLayoutFragment extends Fragment{
 

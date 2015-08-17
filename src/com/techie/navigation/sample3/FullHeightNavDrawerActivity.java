@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.sample3;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -25,13 +25,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
-public class ToolbarActivity extends AppCompatActivity {
+import com.techie.navigation.R;
+import com.techie.navigation.sample1.DrawerArrayAdapter;
+
+public class FullHeightNavDrawerActivity extends AppCompatActivity {
 
 	private DrawerArrayAdapter adapter;
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
+	private View mDrawerHeader;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private Toolbar toolBar;
 	
@@ -39,7 +44,7 @@ public class ToolbarActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.toolbar_main);
+		setContentView(R.layout.mini_nav_drawer_main);
 		
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -51,7 +56,7 @@ public class ToolbarActivity extends AppCompatActivity {
         toolBar.setTitle(title);
         setSupportActionBar(toolBar);
 		setupSlider();
-		
+				
 		openFragment(Fragment.instantiate(this, fName));
 			
 	}
@@ -60,11 +65,14 @@ public class ToolbarActivity extends AppCompatActivity {
 		
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_options, R.string.app_name);
-
+        mDrawerHeader = getLayoutInflater().inflate(R.layout.toolbar_drawer_header, null);
+        
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-	    
+        
 		adapter = new DrawerArrayAdapter(this);
+		mDrawerList.addHeaderView(mDrawerHeader);
         mDrawerList.setAdapter(adapter);
         
 	}
@@ -85,9 +93,6 @@ public class ToolbarActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-    
-    
-
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

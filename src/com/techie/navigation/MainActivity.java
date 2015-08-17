@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation;
 
+import android.R.color;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.techie.navigation.common.PlaceHolderFragment;
+import com.techie.navigation.sample1.ActionBarActivity;
+import com.techie.navigation.sample2.TabHostFragment;
+import com.techie.navigation.sample2.TabLayoutFragment;
+import com.techie.navigation.sample2.ToolbarActivity;
+import com.techie.navigation.sample3.FullHeightNavDrawerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,13 +54,22 @@ public class MainActivity extends AppCompatActivity {
 		
 		OptionsEnum options[] = OptionsEnum.values();
 		
-		adapter = new ArrayAdapter<OptionsEnum>(this, android.R.layout.simple_list_item_1, options){
+		adapter = new ArrayAdapter<OptionsEnum>(this, android.R.layout.simple_list_item_2, android.R.id.text1,  options){
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
+				
 				View vu = super.getView(position, convertView, parent);
-				TextView tv = (TextView)vu.findViewById(android.R.id.text1);
+				
+				TextView tv1 = (TextView)vu.findViewById(android.R.id.text1);
+				TextView tv2 = (TextView)vu.findViewById(android.R.id.text2);
+				
+				tv1.setTextSize(24.0f);
+				tv2.setTextColor(getResources().getColor(color.darker_gray));
 				OptionsEnum option = getItem(position);
-				tv.setText(option.getTitle());
+				
+				tv1.setText(option.getTitle());
+				tv2.setText(option.getDescription());
+				
 				return vu;
 			}
 		};
@@ -73,10 +90,16 @@ public class MainActivity extends AppCompatActivity {
 	
 	enum OptionsEnum{
 		
-		ActionTabBarDrawer {
+		SAMPLE1 {
+
 			@Override
 			String getTitle() {
-				return "ActionTabBar+Drawer";
+				return "Sample1";
+			}
+			
+			@Override
+			String getDescription() {
+				return "This sample screen shows the integration of ActionBar, TabBar & Naivgation Drawer components together.";
 			}
 
 			@Override
@@ -87,10 +110,16 @@ public class MainActivity extends AppCompatActivity {
 			}
 
 		}, 
-		ActionBarTabBarDrawer {
+		SAMPLE2_1 {
+			
 			@Override
 			String getTitle() {
-				return "Toolbar+TabHost+Drawer";
+				return "Sample2.1";
+			}
+			
+			@Override
+			String getDescription() {
+				return "This sample screen shows the integration of Toolbar with TabHost including Navigation Drawer.";
 			}
 
 			@Override
@@ -100,13 +129,21 @@ public class MainActivity extends AppCompatActivity {
 				i.putExtra("title", getTitle());
 				return i;
 			}
+
 		}, 
-		ToolBarTabBarDrawer {
+		SAMPLE2_2 {
+
+			
 			@Override
 			String getTitle() {
-				return "ToolBar+TabLayout+Drawer";
+				return "Sample2.2";
 			}
 
+			@Override
+			String getDescription() {
+				return "This sample screen shows the integration of Toolbar with TabLayout including Navigation Drawer.";
+			}
+			
 			@Override
 			Intent getIntent(Context context) {
 				Intent i = new Intent(context, ToolbarActivity.class);
@@ -116,22 +153,30 @@ public class MainActivity extends AppCompatActivity {
 			}
 
 		},
-		MiniNavDrawer{
+		SAMPLE3{
+
 			@Override
 			String getTitle() {
-				return "TranslucentStatusBar+Toolbar+FullHeightDrawer";
+				return "Sample3";
 			}
 
 			@Override
+			String getDescription() {
+				return "This sample screen shows the integration of Full length Naivgation Drawer including translucent StatusBar & ToolBar";
+			}
+			
+			@Override
 			Intent getIntent(Context context) {
-				Intent i = new Intent(context, MiniNavDrawerActivity.class);
+				Intent i = new Intent(context, FullHeightNavDrawerActivity.class);
 				i.putExtra("fragment", PlaceHolderFragment.class.getName());
 				i.putExtra("title", getTitle());
 				return i;
 			}
+
 		};
 		
 		abstract String getTitle();
+		abstract String getDescription();
 		abstract Intent getIntent(Context context);
 	}
 

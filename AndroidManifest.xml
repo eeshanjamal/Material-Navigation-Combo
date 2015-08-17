@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.techie.actiontabbardrawer"
+    package="com.techie.navigation"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -24,18 +24,18 @@
         </activity>
         
         <activity 
-            android:name="ActionBarActivity"
+            android:name=".sample1.ActionBarActivity"
             android:label="@string/actionbar_activity"/>
         
         <activity 
-            android:name="ToolbarActivity"
+            android:name=".sample2.ToolbarActivity"
             android:label="@string/toolbar_activity"
             android:theme="@style/ToolbarActivityTheme"/>
         
         <activity 
-            android:name="MiniNavDrawerActivity"
-            android:label="@string/mini_nav_drawer_activity"
-            android:theme="@style/MiniNavDrawerActTheme"/>
+            android:name=".sample3.FullHeightNavDrawerActivity"
+            android:label="@string/full_height_nav_drawer_activity"
+            android:theme="@style/FullHeightNavDrawerActTheme"/>
         
     </application>
 

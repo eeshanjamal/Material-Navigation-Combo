@@ -14,114 +14,72 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.sample2;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 
+import com.techie.navigation.R;
+import com.techie.navigation.sample1.DrawerArrayAdapter;
 
-public class ActionBarActivity extends AppCompatActivity {
+public class ToolbarActivity extends AppCompatActivity {
 
 	private DrawerArrayAdapter adapter;
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private CharSequence mTitle;
-	
+	private Toolbar toolBar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.actionbar_main);
-
+		setContentView(R.layout.toolbar_main);
+		
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        toolBar		= (Toolbar)findViewById(R.id.toolbar);
         
         String title = getIntent().getStringExtra("title");
-        getSupportActionBar().setTitle(title);
+        String fName = getIntent().getStringExtra("fragment");
         
+        toolBar.setTitle(title);
+        setSupportActionBar(toolBar);
 		setupSlider();
-		setupTabs();
-			
 		
+		openFragment(Fragment.instantiate(this, fName));
+			
 	}
-
+	
 	private void setupSlider(){
 		
-		mTitle = getSupportActionBar().getTitle();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_options, R.string.app_name) {
-
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                setSliderTitle(mTitle);
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                setSliderTitle(getString(R.string.drawer_options));
-            }
-            
-        };
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_options, R.string.app_name);
         
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
-	    
 		adapter = new DrawerArrayAdapter(this);
         mDrawerList.setAdapter(adapter);
         
 	}
 	
-	@SuppressWarnings("deprecation")
-	private void setupTabs(){
-	
-	    ActionBar actionBar = getSupportActionBar();
-	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-	
-	    String title = getString(R.string.artist);
-	    Tab tab = actionBar.newTab()
-	                       .setText(title)
-	                       .setTabListener(new ActionBarTabListener<PlaceHolderFragment>(
-	                               this, title, PlaceHolderFragment.class, PlaceHolderFragment.getBundle(title)));
-	    actionBar.addTab(tab);
-	
-	    title = getString(R.string.album);
-	    tab = actionBar.newTab()
-	                   .setText(R.string.album)
-	                   .setTabListener(new ActionBarTabListener<PlaceHolderFragment>(
-	                           this, "album", PlaceHolderFragment.class, PlaceHolderFragment.getBundle(title)));
-	    actionBar.addTab(tab);
-    
-	}
-
-
-	private void setSliderTitle(CharSequence title){
-		getSupportActionBar().setTitle(title);
-        supportInvalidateOptionsMenu();
+	private void openFragment(Fragment frag){
+		getSupportFragmentManager().beginTransaction().add(R.id.content_frame, frag, null).commit();
 	}
 	
 	@Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerLayout.post(new Runnable() {
-			@Override
-			public void run() {
-				mDrawerToggle.syncState();
-			}
-		});
-        
+        mDrawerToggle.syncState();
     }
 
     @Override
@@ -129,6 +87,9 @@ public class ActionBarActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+    
+    
+
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,13 +98,6 @@ public class ActionBarActivity extends AppCompatActivity {
 		return true;
 	}
 	
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		 boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
-        return super.onPrepareOptionsMenu(menu);
-	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Pass the event to ActionBarDrawerToggle, if it returns
@@ -160,4 +114,5 @@ public class ActionBarActivity extends AppCompatActivity {
 		return super.onOptionsItemSelected(item);
 		
 	}
+
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.sample1;
 
 import java.util.ArrayList;
 

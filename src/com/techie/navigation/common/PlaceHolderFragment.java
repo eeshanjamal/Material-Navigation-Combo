@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.common;
+
+import com.techie.navigation.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

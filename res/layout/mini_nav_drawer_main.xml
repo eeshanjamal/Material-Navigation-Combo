@@ -22,7 +22,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    xmlns:app="http://schemas.android.com/apk/res/com.techie.actiontabbardrawer">
+    xmlns:app="http://schemas.android.com/apk/res/com.techie.navigation">
 
     <!-- As the main content view, the view below consumes the entire
          space available using match_parent in both dimensions. -->
@@ -43,19 +43,11 @@
             android:theme="@style/ToolBarTheme"
             app:popupTheme="@style/Theme.AppCompat.Light"/>
         
-        <View 
-            android:id="@+id/side_content"
-            android:layout_height="match_parent"
-            android:layout_width="40dp"
-            android:layout_below="@id/toolbar"
-            android:background="@color/primary"/>
-        
         <LinearLayout 
 			android:id="@+id/content_frame"
 			android:layout_width="match_parent"
 	        android:layout_height="match_parent"
 	        android:layout_below="@id/toolbar"
-	        android:layout_toRightOf="@id/side_content"
 	        android:orientation="vertical" />
         
     </RelativeLayout>    
@@ -70,8 +62,9 @@
         
         <ListView
 	        android:id="@+id/left_drawer"
-	        android:layout_width="240dp"
+	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
+	        android:layout_marginRight="16dp"
 	        android:layout_gravity="start"
 	        android:choiceMode="singleChoice"
 	        android:divider="@android:color/transparent"

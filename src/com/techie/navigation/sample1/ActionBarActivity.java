@@ -14,75 +14,117 @@
  * limitations under the License.
  */
 
-package com.techie.actiontabbardrawer;
+package com.techie.navigation.sample1;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-public class MiniNavDrawerActivity extends AppCompatActivity {
+import com.techie.navigation.R;
+import com.techie.navigation.common.PlaceHolderFragment;
+
+
+public class ActionBarActivity extends AppCompatActivity {
 
 	private DrawerArrayAdapter adapter;
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
-	private View mDrawerHeader;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private Toolbar toolBar;
+	private CharSequence mTitle;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.mini_nav_drawer_main);
-		
+		setContentView(R.layout.actionbar_main);
+
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        toolBar		= (Toolbar)findViewById(R.id.toolbar);
         
         String title = getIntent().getStringExtra("title");
-        String fName = getIntent().getStringExtra("fragment");
+        getSupportActionBar().setTitle(title);
         
-        toolBar.setTitle(title);
-        setSupportActionBar(toolBar);
 		setupSlider();
-				
-		openFragment(Fragment.instantiate(this, fName));
+		setupTabs();
 			
+		
 	}
-	
+
 	private void setupSlider(){
 		
+		mTitle = getSupportActionBar().getTitle();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_options, R.string.app_name);
-        mDrawerHeader = getLayoutInflater().inflate(R.layout.toolbar_drawer_header, null);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_options, R.string.app_name) {
+
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                setSliderTitle(mTitle);
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                setSliderTitle(getString(R.string.drawer_options));
+            }
+            
+        };
         
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primary_dark));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
+	    
 		adapter = new DrawerArrayAdapter(this);
-		mDrawerList.addHeaderView(mDrawerHeader);
         mDrawerList.setAdapter(adapter);
         
 	}
 	
-	private void openFragment(Fragment frag){
-		getSupportFragmentManager().beginTransaction().add(R.id.content_frame, frag, null).commit();
+	@SuppressWarnings("deprecation")
+	private void setupTabs(){
+	
+	    ActionBar actionBar = getSupportActionBar();
+	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	
+	    String title = getString(R.string.artist);
+	    Tab tab = actionBar.newTab()
+	                       .setText(title)
+	                       .setTabListener(new ActionBarTabListener<PlaceHolderFragment>(
+	                               this, title, PlaceHolderFragment.class, PlaceHolderFragment.getBundle(title)));
+	    actionBar.addTab(tab);
+	
+	    title = getString(R.string.album);
+	    tab = actionBar.newTab()
+	                   .setText(R.string.album)
+	                   .setTabListener(new ActionBarTabListener<PlaceHolderFragment>(
+	                           this, "album", PlaceHolderFragment.class, PlaceHolderFragment.getBundle(title)));
+	    actionBar.addTab(tab);
+    
+	}
+
+
+	private void setSliderTitle(CharSequence title){
+		getSupportActionBar().setTitle(title);
+        supportInvalidateOptionsMenu();
 	}
 	
 	@Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        mDrawerLayout.post(new Runnable() {
+			@Override
+			public void run() {
+				mDrawerToggle.syncState();
+			}
+		});
+        
     }
 
     @Override
@@ -99,6 +141,13 @@ public class MiniNavDrawerActivity extends AppCompatActivity {
 	}
 	
 	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		 boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
@@ -114,5 +163,4 @@ public class MiniNavDrawerActivity extends AppCompatActivity {
 		return super.onOptionsItemSelected(item);
 		
 	}
-
 }

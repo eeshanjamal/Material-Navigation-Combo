@@ -38,7 +38,7 @@
 	    <item name="windowActionModeOverlay">true</item>
 	</style>
     
-    <style name="MiniNavDrawerActTheme" parent="MiniNavDrawerActBaseTheme"/>
+    <style name="FullHeightNavDrawerActTheme" parent="MiniNavDrawerActBaseTheme"/>
     
     
     <!-- ************ Base ToolBar theme. ************ -->
